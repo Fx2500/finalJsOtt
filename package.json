@@ -1,0 +1,11 @@
+{
+  "name": "desafio",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Fx2500 <d.holz@live.com>",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "start": "node --experimental-json-modules main.js"
+  }
+}
