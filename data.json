@@ -11,6 +11,7 @@
   { "clients_id": 1, "data": "11/05/2021", "total": 329.99 },
   { "clients_id": 3, "data": "02/03/2021", "total": 450.99 },
   { "clients_id": 1, "data": "04/04/2021", "total": 333.49 },
-  { "clients_id": 3, "data": "01/01/2021", "total": 585.42 }
+  { "clients_id": 3, "data": "01/01/2021", "total": 585.42 },
+  { "clients_id": 1, "data": "10/06/2021", "total": 10.42 }
   ]
 }

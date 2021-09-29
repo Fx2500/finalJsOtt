@@ -1,8 +1,14 @@
 import data from './data.json'
 import grandTotal from './math.js'
 
+//---------------------------------------------------------
 const clientes = data.clientes
 const purchases = data.purchases
+
+function formatedDate(date) {
+  date = date.split('/').reverse().join('/')
+  return date
+} //formats date to yyyy/mm/dd
 
 const idList = clientes.map(({ id }) => id); // create an array with all active customers id's
 
@@ -12,8 +18,8 @@ const purchasesOrderedByCustomer = idList.map(idNumber => {
 
 const orderedByDate = purchasesOrderedByCustomer.map(elem => {
   const andOrderedByDate = elem.sort((a, b) => {
-    let dateValuea = Number(new Date(a.data));
-    let dateValueb = Number(new Date(b.data));
+    let dateValuea = formatedDate(a.data);
+    let dateValueb = formatedDate(b.data);
     return dateValuea == dateValueb ? 0 : dateValuea > dateValueb ? 1 : -1;
   });
   return andOrderedByDate;
@@ -42,13 +48,10 @@ export function printOutForm(customerId) {
   console.log(`Cliente: ${customerId} - ${nameFinder(customerId)}`)
   shoppingHistory(customerId),
   console.log(`Total do cliente: R$${grandTotal(customerId)}.`)
-}
+}//print all purchases form selected customer
 
 export function fullListing() {
   idList.forEach((customerId) => {
     printOutForm(customerId)
   })
-}
-
-
-// ////////////////////////////////////////////////////////////////////////////////
+}//prints all purchases
