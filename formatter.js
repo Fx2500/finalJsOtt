@@ -17,7 +17,7 @@ const purchasesOrderedByCustomer = idList.map(idNumber => {
 }); // create an array for each customer containing all purchases,
 
 const orderedByDate = purchasesOrderedByCustomer.map(elem => {
-  const andOrderedByDate = elem.sort((a, b) => {
+  const andOrderedByDate = [...elem].sort((a, b) => {
     let dateValuea = formatedDate(a.data);
     let dateValueb = formatedDate(b.data);
     return dateValuea == dateValueb ? 0 : dateValuea > dateValueb ? 1 : -1;
@@ -26,27 +26,23 @@ const orderedByDate = purchasesOrderedByCustomer.map(elem => {
 }); // orders purchasesOrderedByCustomer arrays by date
 
 function nameFinder(customerId) {
-  let index = customerId - 1;
-  return clientes[index].name;
+  // let index = customerId - 1;
+  const customerData = clientes.find(({id}) => id === customerId)
+  return customerData.name
 }
 
 function shoppingHistory(customerId) {
-  let index = customerId - 1;
-  let datesArr = [];
-  let valuesArr = [];
-  for (let j = 0; j < purchasesOrderedByCustomer[index].length; j++) {
-    datesArr.push(purchasesOrderedByCustomer[index][j].data);
-    valuesArr.push(purchasesOrderedByCustomer[index][j].total);
+  const index = idList.indexOf(customerId);
+  for (let j = 0; j < orderedByDate[index].length; j++) {
     console.log(
-      `Compra em ${datesArr[j]} no total de R$ ${valuesArr[j].toFixed(2)}.`
-    );
-  }
+      `Compra em ${orderedByDate[index][j].data} no total de R$ ${orderedByDate[index][j].total.toFixed(2)}.`
+    )}
 }
 
 export function printOutForm(customerId) {
   console.log('\n')
   console.log(`Cliente: ${customerId} - ${nameFinder(customerId)}`)
-  shoppingHistory(customerId),
+  shoppingHistory(customerId)
   console.log(`Total do cliente: R$${grandTotal(customerId)}.`)
 }//print all purchases form selected customer
 
