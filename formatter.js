@@ -10,7 +10,7 @@ function formatedDate(date) {
   return date
 } //formats date to yyyy/mm/dd
 
-const idList = clientes.map(({ id }) => id); // create an array with all active customers id's
+const idList = clientes.map(({ id }) => id).sort((a,b) => a -b); // create and organize an array with all active customers id's
 
 const purchasesOrderedByCustomer = idList.map(idNumber => {
   return purchases.filter(entry => entry.clients_id === idNumber);
